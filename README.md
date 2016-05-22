@@ -18,3 +18,8 @@ under win10-icarus_verilog-gtkwave.
 
 Design is small enough that it can be run using EDAPlayground also.
 
+## crc_4
+Module that calculates the CRC on a stream of serialized data provided to it.
+
+The generator polynomial is x^3 + x + 1.
+

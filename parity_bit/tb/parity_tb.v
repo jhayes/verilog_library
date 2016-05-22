@@ -14,7 +14,6 @@
 module parity_tb();
 
 	 parameter SCLK_PERIOD = 20;
-	 parameter START_PATTERN = 4'b1001; // Data word to check for parity.
 	 parameter NUM_BITS = 8'd4; // Number of bits in data word.
 	 parameter EVEN_PARITY_BIT = 1'b1; // If set, DUT will indicate even parity.
 	 parameter NUM_TESTS = 5; // Number of times to restart simulation and rerun test.
@@ -48,7 +47,7 @@ module parity_tb();
          
          $display("============== Test %0d ==============", test_cnt);
          $display("============== Settings ==============");
-         $display("Given data %0b, and EVEN_PARITY_BIT = %0b", START_PATTERN, EVEN_PARITY_BIT);
+         $display("Given data %0b, and EVEN_PARITY_BIT = %0b", data_word, EVEN_PARITY_BIT);
          $display("parity_bit_gen calculated %0b, and testbench calculated %0b.", parity_bit, tb_answer);
          
          $display("=============== Answer ===============");

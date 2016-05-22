@@ -1,2 +1,5 @@
-#Ignore waveform dump files
+# Ignore waveform dump files.
 *.vcd
+
+# Ignore compiled files.
+*.out

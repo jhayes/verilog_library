@@ -1,9 +1,10 @@
-// Testbench and test to see parity_bit calculator in
+// Testbench and test to see parity_bit_gen in
 // action. Generates a reset signal that will send
 // out a fixed pattern from a shift register along
 // with wr_en pulses.
 //
-// If odd number of bits seen, parity_bit will be high.
+// Depending on setting of EVEN_PARITY_BIT, output
+// wire 'parity_bit' will indicate result.
 
 `timescale 1ns/1ns
 
@@ -12,8 +13,8 @@ module parity_tb();
 	 parameter SCLK_PERIOD = 20;
 	 parameter START_PATTERN = 4'b1011; // Data word to check for parity.
 	 parameter NUM_BITS = 8'd4; // Number of bits in data word.
+	 parameter EVEN_PARITY_BIT = 1'b1; // If set, DUT will indicate even parity.
 	 
-
 	 reg sclk;
 	 reg rst_n;
 	 
@@ -21,11 +22,11 @@ module parity_tb();
 	 wire wr_en;
 	 wire parity_bit;
 	 
-	 always begin : clk_gen
+	 always begin // clk_gen
 			#(SCLK_PERIOD/2) sclk = ~sclk;
-	 end : clk_gen
+	 end
 	 
-	 initial begin : rst_gen
+	 initial begin // rst_gen
 			rst_n = 1'b1;
 			sclk = 1'b0;
 			#100;
@@ -34,17 +35,16 @@ module parity_tb();
 			rst_n = 1'b1;
 			#1000;
 			$finish;
-	 end : rst_gen
+	 end
 
-	 initial begin : vcs_waves
+	 initial begin // waves
       $dumpfile("dump.vcd");
       $dumpvars(0);
-	 end : vcs_waves
-	 
+	 end
 	 
    parity_bit_gen 
 		 #(
-			 .EVEN_PARITY_BIT(1'b1)
+			 .EVEN_PARITY_BIT(EVEN_PARITY_BIT)
 			 )
 	 DUT (
 				.data_in(data_in),

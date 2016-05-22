@@ -1,4 +1,4 @@
-// This module takes in data and if the wrte enable signal is set 
+// This module takes in data and if the write enable signal is set 
 // (wr_en), it will then XOR this with the current state of our
 // parity check.
 
@@ -10,7 +10,7 @@ module parity_bit_gen (
 											 output reg data_out // Output of our parity check. If high, indicates that an odd number of bits have been seen so far.
 											 );
 
-	 parameter EVEN_PARITY_BIT = 1'b0;
+	 parameter EVEN_PARITY_BIT = 1'b0; // If set, then data_out being high indicates an even number of ones seen. If not set, being high indicates an odd number of ones seen.
 	 	 
 	 always @(posedge clk, negedge rst_n) begin
 			if(rst_n == 0) data_out <= EVEN_PARITY_BIT;

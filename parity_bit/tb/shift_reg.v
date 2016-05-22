@@ -1,3 +1,12 @@
+// This module is loaded with a START_PATTERN on
+// receiving a reset signal. On release of the
+// reset, the pattern is then sent out serially
+// on the positive clk edge.
+//
+// A tally counter is included for convenience (as
+// this is acting as a part of the verification
+// environment here).
+
 module shift_reg (
 									input wire 	clk,
 									input wire 	rst_n,

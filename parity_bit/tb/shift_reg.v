@@ -3,9 +3,8 @@
 // reset, the pattern is then sent out serially
 // on the positive clk edge.
 //
-// A tally counter is included for convenience (as
-// this is acting as a part of the verification
-// environment here).
+// A tally counter is included for convenience. 
+// Also to turn off wr_en at the appropriate time.
 
 module shift_reg (
 									input wire 	clk,
@@ -40,7 +39,4 @@ module shift_reg (
 			
 	 end
 
-//   assign data_out = data_word[NUM_BITS-1];
-
-	 
 endmodule // shift_reg 

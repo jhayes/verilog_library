@@ -9,11 +9,11 @@
 module shift_reg (
 									input wire 	clk,
 									input wire 	rst_n,
+                  input wire [NUM_BITS-1:0]	start_word,
 									output reg 	wr_en,
 									output reg data_out
 									);
 
-	 parameter START_PATTERN = 'b101;
 	 parameter NUM_BITS = 8'd3;
 	 
    reg [NUM_BITS-1:0] 				data_word;
@@ -21,7 +21,7 @@ module shift_reg (
 	 
 	 always @(posedge clk, negedge rst_n) begin
 			if(rst_n == 0) begin
-				 data_word <= START_PATTERN;
+				 data_word <= start_word;
 				 tally <= NUM_BITS;
 				 wr_en <= 1'b0;
 				 data_out <= 1'b0;
